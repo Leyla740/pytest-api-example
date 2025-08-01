@@ -63,7 +63,7 @@ TODO: Finish this test by...
 '''
 
 
-@pytest.mark.parametrize("invalid_id", [ -1, 999999, "invalid"])
+@pytest.mark.parametrize("invalid_id", [-1, 999999, "invalid"])
 def test_get_by_id_404(invalid_id):
     test_endpoint = f"/pets/{invalid_id}"
     response = api_helpers.get_api_data(test_endpoint)
