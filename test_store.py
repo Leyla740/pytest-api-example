@@ -2,6 +2,7 @@ from jsonschema import validate
 import pytest
 import schemas
 import api_helpers
+import random
 from hamcrest import assert_that, contains_string, is_
 
 '''
@@ -12,5 +13,4 @@ TODO: Finish this test by...
 3) Validate the response codes and values
 4) Validate the response message "Order and pet status updated successfully"
 '''
-def test_patch_order_by_id():
-    pass
+
