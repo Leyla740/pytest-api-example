@@ -1,3 +1,6 @@
+from pydantic import BaseModel
+from typing import Optional
+
 pet = {
     "type": "object",
     "required": ["name", "type"],
@@ -18,7 +21,6 @@ pet = {
         },
     }
 }
-
 order_schema = {
     "type": "object",
     "properties": {
@@ -37,15 +39,17 @@ order_schema = {
         }
     },
     "required": ["pet_id"],
-    "additionalProperties": False
+    # Changed from False to True to allow additional properties
+    "additionalProperties": True
 }
-order_update_schema = {
-    "type": "object",
-    "properties": {
-        "status": {
-            "type": "string",
-            "enum": ["available", "sold", "pending"]
-        }
-    },
-    "additionalProperties": False
-}
+
+class Pet(BaseModel):
+    id: Optional[int] = None
+    name: str
+    type: str  # "cat", "dog", or "fish"
+    status: Optional[str] = None  # "available", "sold", or "pending"
+
+class Order(BaseModel):
+    id: str
+    pet_id: int
+    status: Optional[str] = None
